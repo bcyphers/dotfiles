@@ -1,40 +1,17 @@
-export EDITOR=vim
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
-export GITAWAREPROMPT=~/.dotfiles/git-aware-prompt
-source $GITAWAREPROMPT/main.sh
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-export PS1="\u@\h|[\t] \w\[$txtylw\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
-export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
+# OPAM configuration
+. /home/bcyphers/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
-if [ -S "$SSH_AUTH_SOCK" ] && [ ! -h "$SSH_AUTH_SOCK" ]; then
-    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-fi
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# Amazon EC2 environmental variables
+export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
+export EC2_USER="922607788343"
+export EC2_ACCESS="AKIAJERWPOGXCXA6TXXQ"
+export EC2_ACCESS_SECRET="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"
+export EC2_CERT="/home/bcyphers/dev/ec2/cert.pem"
+export EC2_PRIVATE_KEY="/home/bcyphers/dev/ec2/pk.pem"
 
-export PATH=/usr/local/bin:$PATH
-
-if [ `uname` == "Darwin" ]; then
-  VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-  source /usr/local/bin/virtualenvwrapper.sh
-else
-  LOCAL_BIN=$HOME/.local/bin
-  source $LOCAL_BIN/virtualenvwrapper.sh
-  export PATH=$PATH:$LOCAL_BIN
-fi
-
-
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
-
-if [ -f `which go` ]; then
-  GOPATH=$HOME/go
-  export GOPATH=$GOPATH
-  mkdir -p $GOPATH
-  if [ `uname` == "Darwin" ]; then
-    export PATH=$PATH:/usr/local/opt/go/libexec/bin
-  else
-    export PATH=/usr/local/go/bin:$PATH
-  fi
-  export PATH=$PATH:$GOPATH/bin
-fi
+# init OPAM
+eval `opam config env`
