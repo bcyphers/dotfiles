@@ -37,6 +37,9 @@ install() {
   echo "Downloading git autocomplete"
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
+  echo "Setting gitignore global"
+  git config --global core.excludesfile ~/.gitignore
+
   mkdir -p ~/.config
 
   echo "Copying vim, git, screen, and bash settings."
