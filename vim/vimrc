@@ -1,12 +1,108 @@
-syntax on
-colorscheme desert
+call pathogen#infect()
+call pathogen#helptags()
 
-execute pathogen#infect()
-call pathogen#helptags() " generate helptags for everything in ‘runtimepath’
+syntax enable
+filetype indent plugin on
+set background=dark
 
-filetype plugin indent on
+" turn off error beeps
+set noeb
 
-source $HOME/.vim/custom/mappings.vim
-source $HOME/.vim/custom/plugins.vim
-source $HOME/.vim/custom/settings.vim
+" Have vim auto read when a file is changed from outside
+set autoread
 
+" Set tabs to work good - 2 spaces, as spaces
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set expandtab
+
+" make tab-complete like bash
+set wildmenu
+set wildignore=*.o,*~,*.pyc
+
+" autocomplete enhancements
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
+
+" easier buffer switching
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" hilight search results
+set hlsearch
+
+" <Ctrl-c> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-c> :nohl<CR><C-c>
+
+" turn backups off, since git/dropbox handles everything anyway
+set nobackup
+set nowb
+set noswapfile
+
+" auto indent, smart indent, wrap lines
+"set ai
+"set si
+set wrap
+set tw=80
+
+" viminfo: this saves commands, searches, etc. from one session to the next
+set vi=%,'50
+set vi+=\"100,:100
+set vi+=n~/.viminfo
+
+" Status Line
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
+
+" Scrolling
+set scrolloff=5 " Keep 3 lines below and above the cursor
+set whichwrap+=<,>,h,l,[,] " wrap around to beginning of next line with h and l
+
+" return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" treat long lines as break lines, for moving around in them
+map j gj
+map k gk
+
+" smart moving between windows, ctrl-[hjkl]
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" remap 0 to first non-blank character
+map 0 ^
+
+if executable('ovamlmerlin') && has('python')
+    let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
+    execute "set rtp+=".s:ocamlmerlin."/vim"
+    execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+endif
+
+" Delete trailing white space on save, useful for Python and CoffeeScript
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()

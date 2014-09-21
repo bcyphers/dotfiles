@@ -4,7 +4,7 @@
 Installation
 --------
 
-    git clone git@github.com:joshblum/dotfiles.git ~/.dotfiles
+    git clone https://github.com/bcyphers/dotfiles.git ~/.dotfiles
 
 Initialization:
 --------
