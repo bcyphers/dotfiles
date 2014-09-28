@@ -1,9 +1,11 @@
 call pathogen#infect()
 call pathogen#helptags()
 
+" Make colors look good
 syntax enable
 filetype indent plugin on
 set background=dark
+colorscheme molokai
 
 " turn off error beeps
 set noeb
@@ -14,6 +16,7 @@ set autoread
 " Set tabs to work good - 2 spaces, as spaces
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
 set smarttab
 set expandtab
 
@@ -32,12 +35,6 @@ inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
 
 " easier buffer switching
 nnoremap <F5> :buffers<CR>:buffer<Space>
-
-" hilight search results
-set hlsearch
-
-" <Ctrl-c> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-c> :nohl<CR><C-c>
 
 " turn backups off, since git/dropbox handles everything anyway
 set nobackup
@@ -68,6 +65,19 @@ set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set laststatus=2
+
+" Other UI
+set number  " line numbers
+set showcmd " show last command used
+set lazyredraw " don't redraw during macros
+set showmatch " match [({})]
+
+" Searching
+set hlsearch " hilight search results
+set incsearch " search character by character
+
+" turn off search highlight with \<space>
+nnoremap <leader><space> :nohlsearch<CR>
 
 " Scrolling
 set scrolloff=5 " Keep 3 lines below and above the cursor
