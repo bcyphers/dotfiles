@@ -48,13 +48,14 @@ install() {
   backup gitignore ~/.gitignore
   backup screenrc ~/.screenrc
   backup bash_profile ~/.bash_profile
+  backup bashrc ~/.bashrc
   backup flake8.config ~/.config/flake8
   _done
 }
 
 clean() {
   echo "Cleaing old files..."
-  files="~/.vim ~/.vimrc ~/.gitignore ~/.screenrc ~/.bash_profile ~/.config/flake8"
+  files="~/.vim ~/.vimrc ~/.gitignore ~/.screenrc ~/.bash_profile ~/.bashrc ~/.config/flake8"
   for f in $files;
   do
     name=$f-*-bak
