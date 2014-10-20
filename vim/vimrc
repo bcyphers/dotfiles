@@ -109,6 +109,9 @@ nmap <C-N> :bn<CR>
 " remap 0 to first non-blank character
 map 0 ^
 
+" Map Coquille commands to <F2> (Undo), <F3> (Next), <F4> (ToCursor)
+au FileType coq call coquille#FNMapping()
+
 if executable('ovamlmerlin') && has('python')
     let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
     execute "set rtp+=".s:ocamlmerlin."/vim"
