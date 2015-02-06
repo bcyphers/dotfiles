@@ -5,10 +5,10 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 # OPAM configuration
-. /home/bcyphers/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-
-# Load ec2 keys into memory
-source "$HOME/.ec2_vars"
+#. /home/bcyphers/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 # init OPAM
-eval `opam config env`
+#eval `opam config env`
+
+# Load ec2 environment vars (keys)
+#source "$HOME/.ec2_vars"
