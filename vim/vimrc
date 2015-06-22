@@ -108,6 +108,9 @@ nmap <C-N> :bn<CR>
 
 " auto-open NERDTree
 au VimEnter *  NERDTree
+" leader-n opens NERDTree
+map <leader>n :NERDTreeToggle<CR>
+let g:NERDTreeWinSize=23
 
 " remap 0 to first non-blank character
 map 0 ^
