@@ -13,13 +13,16 @@ highlight nonText ctermbg=NONE
 " turn off error beeps
 set noeb
 
+" backspace over everything
+set backspace=2
+
 " Have vim auto read when a file is changed from outside
 set autoread
 
-" Set tabs to work good - 2 spaces, as spaces
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+" Set tabs to work good - 3 spaces, as spaces (for PR)
+set tabstop=3
+set shiftwidth=3
+set softtabstop=3
 set smarttab
 set expandtab
 
@@ -35,9 +38,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
-
-" easier buffer switching
-nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " turn backups off, since git/dropbox handles everything anyway
 set nobackup
@@ -105,9 +105,14 @@ map <C-l> <C-W>l
 " easier buffer switching
 nmap <C-P> :bp<CR>
 nmap <C-N> :bn<CR>
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" quick save
+nmap <leader>w :w<CR>
 
 " auto-open NERDTree
 au VimEnter *  NERDTree
+
 " leader-n opens NERDTree
 map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=23
