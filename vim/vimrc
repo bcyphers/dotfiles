@@ -51,9 +51,10 @@ set wrap
 set tw=80
 
 " viminfo: this saves commands, searches, etc. from one session to the next
-set vi=%,'50
-set vi+=\"100,:100
-set vi+=n~/.viminfo
+set vi='50           "save marks for up to 50 files
+set vi+=\"100        "save 100 lines for each register
+set vi+=:100         "save 100 lines of command history
+set vi+=n~/.viminfo  "save it all in ~/.viminfo
 
 " Status Line
 set statusline=%t       "tail of the filename
@@ -78,9 +79,6 @@ set showmatch " match [({})]
 " Searching
 set hlsearch " hilight search results
 set incsearch " search character by character
-
-" turn off search highlight with \<space>
-nnoremap <leader><space> :nohlsearch<CR>
 
 " Scrolling
 set scrolloff=5 " Keep 3 lines below and above the cursor
@@ -107,8 +105,8 @@ nmap <C-P> :bp<CR>
 nmap <C-N> :bn<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
-" quick save
-nmap <leader>w :w<CR>
+" turn off search highlight and save with \<space>
+nnoremap <leader><space> :nohlsearch<CR>:w<CR>
 
 " auto-open NERDTree
 au VimEnter *  NERDTree
