@@ -13,13 +13,16 @@ highlight nonText ctermbg=NONE
 " turn off error beeps
 set noeb
 
+" backspace over everything
+set backspace=2
+
 " Have vim auto read when a file is changed from outside
 set autoread
 
-" Set tabs to work good - 2 spaces, as spaces
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+" Set tabs to work good - 3 spaces, as spaces (for PR)
+set tabstop=3
+set shiftwidth=3
+set softtabstop=3
 set smarttab
 set expandtab
 
@@ -36,9 +39,6 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
 
-" easier buffer switching
-nnoremap <F5> :buffers<CR>:buffer<Space>
-
 " turn backups off, since git/dropbox handles everything anyway
 set nobackup
 set nowb
@@ -51,9 +51,10 @@ set wrap
 set tw=80
 
 " viminfo: this saves commands, searches, etc. from one session to the next
-set vi=%,'50
-set vi+=\"100,:100
-set vi+=n~/.viminfo
+set vi='50           "save marks for up to 50 files
+set vi+=\"100        "save 100 lines for each register
+set vi+=:100         "save 100 lines of command history
+set vi+=n~/.viminfo  "save it all in ~/.viminfo
 
 " Status Line
 set statusline=%t       "tail of the filename
@@ -79,9 +80,6 @@ set showmatch " match [({})]
 set hlsearch " hilight search results
 set incsearch " search character by character
 
-" turn off search highlight with \<space>
-nnoremap <leader><space> :nohlsearch<CR>
-
 " Scrolling
 set scrolloff=5 " Keep 3 lines below and above the cursor
 set whichwrap+=<,>,h,l,[,] " wrap around to beginning of next line with h and l
@@ -105,9 +103,14 @@ map <C-l> <C-W>l
 " easier buffer switching
 nmap <C-P> :bp<CR>
 nmap <C-N> :bn<CR>
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" turn off search highlight and save with \<space>
+nnoremap <leader><space> :nohlsearch<CR>:w<CR>
 
 " auto-open NERDTree
 au VimEnter *  NERDTree
+
 " leader-n opens NERDTree
 map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=23
