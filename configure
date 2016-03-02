@@ -22,14 +22,6 @@ backup() {
 
 install() {
   echo "Starting installation..."
-  echo "Installing common python packages."
-  if [ `uname` == "Darwin" ]; then
-    pip install --upgrade -r requirements.txt
-  else
-    pip install --user --upgrade -r requirements.txt
-  fi
-  _done
-
   echo "Initializing submodules"
   git submodule update --init --recursive
   _done
@@ -44,18 +36,17 @@ install() {
 
   echo "Copying vim, git, screen, and bash settings."
   backup vim/ ~/.vim
-  backup vim/vimrc ~/.vimrc
+  backup vimrc ~/.vimrc
   backup gitignore ~/.gitignore
-  backup screenrc ~/.screenrc
+  backup tmux.conf ~/.tmux.conf
   backup bash_profile ~/.bash_profile
   backup bashrc ~/.bashrc
-  backup flake8.config ~/.config/flake8
   _done
 }
 
 clean() {
   echo "Cleaing old files..."
-  files="~/.vim ~/.vimrc ~/.gitignore ~/.screenrc ~/.bash_profile ~/.bashrc ~/.config/flake8"
+  files="~/.vim ~/.vimrc ~/.gitignore ~/.tmux.conf ~/.bash_profile ~/.bashrc"
   for f in $files;
   do
     name=$f-*-bak
@@ -64,8 +55,19 @@ clean() {
   done
 }
 
+pull() {
+  echo "Pulling files from current environment..."
+  files="~/.vim ~/.vimrc ~/.gitignore ~/.tmux.conf ~/.bash_profile ~/.bashrc"
+  for f in $files;
+  do
+    echo "Copying $f to ${f:3}"
+    eval cp -R $f ${f:3}
+  done
+  _done
+}
+
 usage() {
-  echo "Usage: ./init.sh [install|clean]"
+  echo "Usage: ./init.sh [install|clean|pull]"
 }
 
 [ "$#" -eq 1 ] || die "`usage`\n1 argument required, $# provided"
@@ -74,6 +76,8 @@ if [ "$1"  == "install" ]; then
     install
 elif [ "$1" ==  "clean" ]; then
     clean
+elif [ "$1" ==  "pull" ]; then
+    pull
 else
   usage
 fi

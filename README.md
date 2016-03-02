@@ -20,6 +20,11 @@ Remove old backups
     ./configure clean
 
 
+Update from current environment
+--------
+    cd ~/.dotfiles
+    ./configure pull
+
 Add plugins
 --------
 

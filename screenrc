@@ -1,4 +1,0 @@
-hardstatus alwayslastline
-hardstatus string "%{= g} %{= w}%-Lw%{=r}%n%f* %t%{-}%+LW"
-defscrollback 10000
-shell -$SHELL
