@@ -61,7 +61,14 @@ pull() {
   for f in $files;
   do
     echo "Copying $f to ${f:3}"
-    eval cp -R $f ${f:3}
+    eval backup $f ${f:3}
+  done
+
+  for f in $files;
+  do
+    name=${f:3}-*-bak
+    echo "Removing $name"
+    rm -rf $name
   done
   _done
 }

@@ -97,13 +97,6 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ?='cowsay -f $(ls /usr/share/cowsay/cows | shuf -n 1 | cut -d. -f1) $(whatis $(ls /bin) 2>/dev/null | shuf -n 1)'
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
-alias .......='cd ../../../../../..'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -126,5 +119,11 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-export SCALA_HOME="/usr/share/java"
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+
+## for athena 6.828
+add exokernel
+add git
+
+## athena 6.035
+add -f scala
+export SCALA_HOME='/mit/scala/scala/scala-2.11.2'
