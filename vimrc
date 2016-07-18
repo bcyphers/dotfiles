@@ -10,6 +10,9 @@ colorscheme molokai
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
+" crtlP remap
+let g:ctrlp_map = '<leader>p'
+
 " turn off error beeps
 set noeb
 
@@ -47,7 +50,7 @@ set noswapfile
 " auto indent, smart indent, wrap lines
 "set ai
 "set si
-set wrap
+set wrap linebreak nolist
 set tw=80
 
 " viminfo: this saves commands, searches, etc. from one session to the next
@@ -105,15 +108,22 @@ nmap <C-P> :bp<CR>
 nmap <C-N> :bn<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
-" turn off search highlight and save with \<space>
-nnoremap <leader><space> :nohlsearch<CR>:w<CR>
+" turn off search highlight and save more quickly
+nnoremap <leader><Space> :w<CR>
+nnoremap <leader>] :nohlsearch<CR>
 
 " auto-open NERDTree
 au VimEnter *  NERDTree
 
+" don't show compiled files
+let NERDTreeIgnore = ['\.pyc$', '\.o$']
+
 " leader-n opens NERDTree
 map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=23
+
+" leader-f runs flake8
+autocmd FileType python map <buffer> <leader>f :call Flake8()<CR>
 
 " remap 0 to first non-blank character
 map 0 ^

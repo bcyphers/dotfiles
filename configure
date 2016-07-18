@@ -67,7 +67,7 @@ pull() {
 }
 
 usage() {
-  echo "Usage: ./init.sh [install|clean|pull]"
+  echo "Usage: ./configure.sh [install|clean|pull]"
 }
 
 [ "$#" -eq 1 ] || die "`usage`\n1 argument required, $# provided"

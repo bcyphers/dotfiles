@@ -8,6 +8,9 @@ cl() { cd "$@" && ls; }
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -16,12 +19,16 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=1000000
+HISTFILESIZE=10000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# turn off ctrl-S/ctrl-Q software flow control for the terminal
+# this also allows ctrl-S to trigger i-search (like reverse-i-search)
+stty -ixon
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -96,6 +103,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ?='cowsay -f $(ls /usr/share/cowsay/cows | shuf -n 1 | cut -d. -f1) $(whatis $(ls /bin) 2>/dev/null | shuf -n 1)'
+alias venv='. venv/bin/activate'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -103,6 +111,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
+
+alias pyclean='find . -name "*.pyc" -exec rm {} \;'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -124,7 +134,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export SCALA_HOME="/usr/share/java"
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+export SCALA_HOME="/usr/local/bin/scala"
+export PATH=$PATH:$SCALA_HOME/bin
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+export SPARK_HOME="$HOME/spark-1.6.2"
+export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH
+export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.9-src.zip:$PYTHONPATH
