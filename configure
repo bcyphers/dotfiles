@@ -57,17 +57,28 @@ clean() {
 
 pull() {
   echo "Pulling files from current environment..."
-  files="~/.vim ~/.vimrc ~/.gitignore ~/.tmux.conf ~/.bash_profile ~/.bashrc"
+  files="~/.vimrc ~/.gitignore ~/.tmux.conf ~/.bash_profile ~/.bashrc"
   for f in $files;
   do
     echo "Copying $f to ${f:3}"
     eval cp -R $f ${f:3}
   done
+
+  basedir=$(pwd)
+  cd ~/.vim/bundle
+  for f in $(ls .);
+  do
+    cd $f
+    url=$(git remote get-url origin)
+    cd $basedir
+    git submodule add $url vim/bundle/$f
+    cd ~/.vim/bundle
+  done
   _done
 }
 
 usage() {
-  echo "Usage: ./init.sh [install|clean|pull]"
+  echo "Usage: ./configure.sh [install|clean|pull]"
 }
 
 [ "$#" -eq 1 ] || die "`usage`\n1 argument required, $# provided"
