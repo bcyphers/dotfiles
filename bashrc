@@ -95,14 +95,14 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Environment variables
+if [ -f ~/.bash_env ]; then
+    . ~/.bash_env
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-
-export SCALA_HOME="/usr/share/java"
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
-export HEROKU_HOME="/usr/local/heroku/bin"
-export PATH="$SCALA_HOME:$JAVA_HOME:$HEROKU_HOME:$PATH"
