@@ -59,7 +59,7 @@ fi
 unset color_prompt force_color_prompt
 
 # save bash history file on each command
-export PROMPT_COMMAND='history -a .bash_history; $PROMPT_COMMAND'
+export PROMPT_COMMAND='history -a ~/.bash_history; $PROMPT_COMMAND'
 export CLICOLOR=1
 
 # some more ls aliases
