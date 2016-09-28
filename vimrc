@@ -113,7 +113,7 @@ nnoremap <leader><Space> :w<CR>
 nnoremap <leader>] :nohlsearch<CR>
 
 " auto-open NERDTree
-au VimEnter *  NERDTree
+"au VimEnter *  NERDTree
 
 " don't show compiled files
 let NERDTreeIgnore = ['\.pyc$', '\.o$']
