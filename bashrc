@@ -33,9 +33,9 @@ fi
 
 # set the prompt to xterm-256color, which lets tmux work correctly.
 case "$TERM" in 
-xterm.*) 
-  TERM=xterm-256color
-  color_prompt=yes;;
+  xterm*) 
+    TERM=xterm-256color
+    color_prompt=yes;;
 esac
 
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -43,6 +43,7 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
   # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
   # a case would tend to support setf rather than setaf.)
   color_prompt=yes
+  alias ls='ls --color'
 else
   color_prompt=
 fi
@@ -61,6 +62,7 @@ unset color_prompt force_color_prompt
 # save bash history file on each command
 export PROMPT_COMMAND='history -a ~/.bash_history; $PROMPT_COMMAND'
 export CLICOLOR=1
+eval $(dircolors -b)
 
 # some more ls aliases
 alias ll='ls -alF'
