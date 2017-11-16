@@ -10,9 +10,6 @@ colorscheme molokai
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
-" crtlP remap
-let g:ctrlp_map = '<leader>p'
-
 " turn off error beeps
 set noeb
 
@@ -112,9 +109,6 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <leader><Space> :w<CR>
 nnoremap <leader>] :nohlsearch<CR>
 
-" auto-open NERDTree
-"au VimEnter *  NERDTree
-
 " don't show compiled files
 let NERDTreeIgnore = ['\.pyc$', '\.o$']
 
@@ -125,19 +119,11 @@ let g:NERDTreeWinSize=23
 " leader-f runs flake8
 autocmd FileType python map <buffer> <leader>f :call Flake8()<CR>
 
+" leader-p runs crtlP
+let g:ctrlp_map = '<leader>p'
+
 " remap 0 to first non-blank character
 map 0 ^
-
-" Map Coquille commands to <F2> (Undo), <F3> (Next), <F4> (ToCursor)
-au FileType coq call coquille#FNMapping()
-
-let g:coquille_auto_move = 'true'
-
-if executable('ovamlmerlin') && has('python')
-    let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
-    execute "set rtp+=".s:ocamlmerlin."/vim"
-    execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
-endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript
 func! DeleteTrailingWS()

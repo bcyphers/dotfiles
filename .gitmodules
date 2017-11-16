@@ -1,9 +1,6 @@
 [submodule "git-aware-prompt"]
 	path = git-aware-prompt
 	url = https://github.com/jimeh/git-aware-prompt.git
-[submodule "vim/bundle/coquille"]
-	path = vim/bundle/coquille
-	url = https://github.com/the-lambda-church/coquille
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
@@ -31,3 +28,6 @@
 [submodule "vim/bundle/vim-python-indent"]
 	path = vim/bundle/vim-python-indent
 	url = https://github.com/hynek/vim-python-pep8-indent.git
+[submodule "vim/bundle/vim-tmux-navigator"]
+	path = vim/bundle/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator

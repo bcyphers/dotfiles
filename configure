@@ -34,13 +34,17 @@ install() {
 
   mkdir -p ~/.config
 
-  echo "Copying vim, git, screen, and bash settings."
+  echo "Copying vim, git, screen, and bash settings"
   backup vim/ ~/.vim
   backup vimrc ~/.vimrc
   backup gitignore ~/.gitignore
   backup tmux.conf ~/.tmux.conf
   backup bash_profile ~/.bash_profile
   backup bashrc ~/.bashrc
+
+  echo "installing bin files"
+  sudo cp bin/* /usr/local/bin
+
   _done
 }
 
