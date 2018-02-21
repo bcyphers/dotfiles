@@ -42,9 +42,6 @@ install() {
   backup bash_profile ~/.bash_profile
   backup bashrc ~/.bashrc
 
-  echo "installing bin files"
-  sudo cp bin/* /usr/local/bin
-
   _done
 }
 
