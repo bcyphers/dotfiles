@@ -22,6 +22,7 @@ backup() {
 
 install() {
   echo "Starting installation..."
+
   echo "Initializing submodules"
   git submodule update --init --recursive
   _done
@@ -41,9 +42,6 @@ install() {
   backup tmux.conf ~/.tmux.conf
   backup bash_profile ~/.bash_profile
   backup bashrc ~/.bashrc
-
-  echo "installing bin files"
-  sudo cp bin/* /usr/local/bin
 
   _done
 }
