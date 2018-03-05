@@ -27,13 +27,16 @@
 	url = https://github.com/myusuf3/numbers.vim.git
 [submodule "vim/bundle/python-indent"]
 	path = vim/bundle/python-indent
-	url = https://github.com/hynek/vim-python-pep8-indent.git
+	url = https://github.com/hynek/vim-python-pep8-indent
 [submodule "vim/bundle/tmux-navigator"]
 	path = vim/bundle/tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator
 [submodule "vim/bundle/markdown"]
 	path = vim/bundle/markdown
-	url = https://github.com/plasticboy/vim-markdown.git
+	url = https://github.com/plasticboy/vim-markdown
 [submodule "vim/bundle/javascript"]
 	path = vim/bundle/javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim-tmux-navigator"]
+	path = vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
