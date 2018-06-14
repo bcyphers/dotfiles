@@ -31,9 +31,6 @@
 [submodule "vim/bundle/tmux-navigator"]
 	path = vim/bundle/tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator
-[submodule "vim/bundle/markdown"]
-	path = vim/bundle/markdown
-	url = https://github.com/plasticboy/vim-markdown
 [submodule "vim/bundle/javascript"]
 	path = vim/bundle/javascript
 	url = https://github.com/pangloss/vim-javascript.git
