@@ -15,6 +15,10 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=100000
 
+# set default editor to vim
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
